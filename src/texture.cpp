@@ -4,22 +4,24 @@
 
 Texture::Texture(GLenum TextureTarget, const std::string& file) {
 
+	GFX_DEBUG("Loading image: %s", file.c_str())
 	int width, height;
-	unsigned char* image;
 	//Loads image from file
-	image = SOIL_load_image(file.c_str(), &width, &height, 0, SOIL_LOAD_AUTO);
+	auto image = stbi_load(file.c_str(), &width, &height, 0, 4);
 
 
 	if (!image) {
 		GFX_WARN("Could not load texture: %s", file.c_str());
-		image =stbi_load("resources/textures/error/error.png", &width, &height, 0, STBI_rgb);
+		GFX_WARN("Reason for failure: %s", stbi_failure_reason());
+
+		image =stbi_load("resources/textures/error/error.png", &width, &height, nullptr, 4);
 	}
 
 	glGenTextures(1, &this->ID);
 	//Binds texture to this object
 	glBindTexture(TextureTarget, this->ID);
 
-	glTexImage2D(TextureTarget, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glTexImage2D(TextureTarget, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	//Set all texture parameters
 	glTexParameteri(TextureTarget, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(TextureTarget, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -31,7 +33,7 @@ Texture::Texture(GLenum TextureTarget, const std::string& file) {
 	glBindTexture(TextureTarget, 0);
 
 	//Clears image
-	SOIL_free_image_data(image);
+	stbi_image_free(image);
 }
 
 Texture::Texture() {

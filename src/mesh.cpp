@@ -428,9 +428,9 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 		if (false) {
 			GLuint heightMapID;
 			heightMapID = activeShader.getUniformLocation("tex_heightmap");
-			glUniform1i(heightMapID, 0);
 
 			HeightMap->Bind();
+			glUniform1i(heightMapID, 1);
 
 		}
 
