@@ -10,11 +10,11 @@
 
 
 #define GFX_IMPLEMENTATION
-#include <mesh.h>
+//#include <mesh.h>
 #include <gameobject.h>
 #include <cameraMovement.h>
 #include <meshRenderer.h>
-
+#include <Terrain/Terrain.h>
 
 
 
@@ -35,13 +35,20 @@ MeshRenderer* newRender1;
 std::unique_ptr<Transform> modelTransform;
 DirectionalLight* dLight;
 std::vector<PointLight*> m_Lights;
+Terrain *terrain;
 //DirectionalLight* dLight;
+
+ 
 
 float lastX = WIDTH / 2.0f;
 float lastY = HEIGHT / 2.0f;
 bool firstMouse = true;
 //Set up all the renderers, map, player, etc.
 void setup() {
+
+
+	terrain = new Terrain(4, 4);
+
 
 	renderer = new MeshRenderer();
 	Dragon = std::unique_ptr<GameObject>(new GameObject("Model1"));
@@ -53,8 +60,8 @@ void setup() {
 //	m_Lights.push_back(m);
 
 	Dragon->AddComponent(renderer);
-	Dragon->LoadMesh("resources/models/nanosuit/scene.gltf");
-	Dragon->SetShader("shader");
+	Dragon->LoadMesh("resources/models/plane/untitled.obj");
+	Dragon->SetShader("test");
 	//Dragon->SetShader("resources/shaders/shadow.vert", "resources/shaders/shadow.frag", "shadow");
 
 	models.push_back(std::move(Dragon));
@@ -100,6 +107,10 @@ void game_loop(GLFWwindow *w, double deltaTime) {
 
 
 	Camera->processInput(w);
+
+	terrain->Render(Camera, glm::mat4(0.0f), dLight, m_Lights);
+
+
 	for (auto& gameObject : models) {
 		gameObject->Render(Camera, dLight, m_Lights);
 	}
@@ -471,7 +482,7 @@ int main(void) {
 
 
 	setup();
-	glClearColor(0.2f, 0.2f, 0.2f, 1);
+	glClearColor(1.0f, 0.0f, 0.8f, 1);
 
 	double lastTime = glfwGetTime();
 	int nbFrames = 0;

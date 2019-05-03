@@ -58,6 +58,8 @@ public:
 	~Mesh();
 
 	bool LoadMesh(const std::string& Filename);
+	void LoadTerrain(float *vertecies, float *textureCoords, float *normals, int *indices);
+	void RenderTerrain();
 
 	glm::mat4 ShadowRenderer();
 	void Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLight, std::vector<PointLight*> pointLights);

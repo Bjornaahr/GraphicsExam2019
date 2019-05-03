@@ -65,6 +65,7 @@ target_sources(${PROJECT}
 	  PRIVATE ${SRCDIR}/Components/meshRenderer.cpp
 	  PRIVATE ${SRCDIR}/Components/gameComponent.cpp
 
+	  PRIVATE ${SRCDIR}/Terrain/Terrain.cpp
 
 
 	  PRIVATE ${LIBDIR}/ImGUI/imgui_demo.cpp
