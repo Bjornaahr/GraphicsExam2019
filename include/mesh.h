@@ -106,6 +106,7 @@ private:
 
 	std::vector<MeshEntry> m_Entries;
 	std::vector<Texture*> m_Textures;
+	Texture* HeightMap;
 	Texture* depthMap;
 	std::vector<PointLight*> m_Lights;
 	DirectionalLight* m_dirLight;

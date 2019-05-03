@@ -1,5 +1,6 @@
 #include "texture.h"
 #include <SOIL.h>
+#include <stb_image_aug.h>
 
 Texture::Texture(GLenum TextureTarget, const std::string& file) {
 
@@ -10,9 +11,8 @@ Texture::Texture(GLenum TextureTarget, const std::string& file) {
 
 
 	if (!image) {
-
 		GFX_WARN("Could not load texture: %s", file.c_str());
-		image = SOIL_load_image("resources/textures/error/error.png", &width, &height, 0, SOIL_LOAD_AUTO);
+		image =stbi_load("resources/textures/error/error.png", &width, &height, 0, STBI_rgb);
 	}
 
 	glGenTextures(1, &this->ID);

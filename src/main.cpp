@@ -48,7 +48,7 @@ void setup() {
 
 
 	terrain = new Terrain(4, 4);
-
+		
 
 	renderer = new MeshRenderer();
 	Dragon = std::unique_ptr<GameObject>(new GameObject("Model1"));

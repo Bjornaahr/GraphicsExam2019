@@ -26,7 +26,7 @@ out float time;
 uniform mat4 model      =mat4(1);
 uniform mat4 lightSpaceMatrix =mat4(1);;
 
-
+uniform sampler2D tex_heightmap; 
 
 
 
@@ -36,6 +36,7 @@ float random (in vec2 _st) {
                          vec2(12.9898,78.233)))*
         43758.5453123);
 }
+
 
 // Based on Morgan McGuire @morgan3d
 // https://www.shadertoy.com/view/4dS3Wd
@@ -61,15 +62,15 @@ float noise (in vec2 _st) {
 float fbm ( in vec2 _st) {
     float v = 0.0;
     float a = 0.5;
-    vec2 shift = vec2(100.0);
     // Rotate to reduce axial bias
     for (int i = 0; i < NUM_OCTAVES; ++i) {
         v += a * noise(_st);
-        _st *= 2;
+        _st = _st * 2.0;
         a *= 0.5;
     }
     return v;
 }
+
 
 
 
@@ -87,36 +88,11 @@ void main()
     Texcoord = aTexCoords; 
 	FragPosLightSpace = lightSpaceMatrix * vec4(FragPos, 1.0);
 
-	vec2 u_resolution = vec2(1024, 769);
+
+	height = texture2D(tex_heightmap,aPos.xy).r;
+	height *= 0.05;
 
 
-	   // Vertex in clip-space
-    vec4 frag_coord  = (MVP * vec4(aPos,1));     // Range:   [-w,w]^4
-
-    // Vertex in NDC-space
-    frag_coord.xyz /= frag_coord.w;       // Rescale: [-1,1]^3
-    frag_coord.w    = 1.0 / frag_coord.w; // Invert W
-
-    // Vertex in window-space
-    frag_coord.xyz *= vec3 (0.5) + vec3 (0.5); // Rescale: [0,1]^3
-    frag_coord.xy  *= u_resolution;                  // Scale and Bias for Viewport
-
-
-
-
-	vec2 st = u_resolution.xy;
-	st.x = u_resolution.x/u_resolution.y;
-    vec2 color = vec2(0.0);
-
-	color += fbm(st*3);
-
-	float scale = 1.0;
-	float offset = 0.0;
-
-
-	normalizedHeight = color.r;
-	height = offset + scale * normalizedHeight;
-	
-	gl_Position = MVP * vec4(aPos.x, aPos.y, aPos.z, 1.0); 
+	gl_Position = MVP * vec4(aPos.x, aPos.y + height, aPos.z, 1.0); 
 	
 }

@@ -195,6 +195,8 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename) {
 			}
 		}
 	}
+	HeightMap = new Texture(GL_TEXTURE_2D, "resources/models/plane/model2-lowTEST.png");
+
 	depthMap = new Texture();
 	return true;
 }
@@ -423,7 +425,14 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 
 
 
+		if (false) {
+			GLuint heightMapID;
+			heightMapID = activeShader.getUniformLocation("tex_heightmap");
+			glUniform1i(heightMapID, 0);
 
+			HeightMap->Bind();
+
+		}
 
 
 
