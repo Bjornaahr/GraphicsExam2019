@@ -40,6 +40,7 @@ in vec3 FragPos;
 in vec3 lightPos;
 in vec3 viewPos;
 in vec4 FragPosLightSpace;
+in float fHeight;
 
 uniform int gNumOfLights;
 
@@ -49,6 +50,8 @@ out vec4 FragColor;
 
 layout(binding=1) uniform sampler2D texOne;
 layout(binding=2) uniform sampler2D stoneTex;
+layout(binding=3) uniform sampler2D snowTex;
+
 
 
 uniform sampler2D shadowMap;
@@ -109,7 +112,6 @@ specular *= attenuation;
 void main()
  {
 
-	
     vec3 norm = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
 
@@ -119,6 +121,11 @@ void main()
 
 
 		
+	if(fHeight < 15){
+    FragColor = vec4(texture(texOne, Texcoord).rgb  * result, 1.);
+	} 
+	else if(fHeight < 30){
+	FragColor = vec4(texture(stoneTex, Texcoord).rgb  * result, 1.);
+	} else 	FragColor = vec4(texture(snowTex, Texcoord).rgb  * result, 1.);
 
-    FragColor = vec4(texture(stoneTex, Texcoord).rgb  * result, 1.);
  }

@@ -25,6 +25,7 @@ out vec3 FragPos;
 out vec3 viewPos;
 out vec4 FragPosLightSpace;
 out float time;
+out float fHeight;
 
 uniform mat4 model      =mat4(1);
 uniform mat4 lightSpaceMatrix =mat4(1);;
@@ -94,6 +95,7 @@ void main()
 	height = texture(tex_heightmap, aTexCoords).r;
 	height *= 50;
 
+	fHeight = height;
 
 	gl_Position = MVP * vec4(aPos.x, height, aPos.z, 1.0); 
 	
