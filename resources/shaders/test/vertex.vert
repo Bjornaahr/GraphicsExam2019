@@ -89,7 +89,7 @@ void main()
 	FragPosLightSpace = lightSpaceMatrix * vec4(FragPos, 1.0);
 
 
-	height = texture(tex_heightmap, aPos.xz).r;
+	height = texture(tex_heightmap, aTexCoords).r;
 	height *= 20;
 
 

@@ -212,8 +212,7 @@ void Mesh::SetShader(char shader[]) {
 	std::string sfrag;
 	vert.append("resources/shaders/").append(shader).append("/vertex.vert");
 	frag.append("resources/shaders/").append(shader).append("/fragment.frag");
-	//svert.append("resources/shaders/").append(shader).append("/shadow.vert");
-	//sfrag.append("resources/shaders/").append(shader).append("/shadow.frag");
+
 	activeShader = createProgram(vert, frag);
 	//activeShadowShader = createProgram(svert, sfrag);
 
