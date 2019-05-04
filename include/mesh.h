@@ -62,7 +62,7 @@ public:
 	void RenderTerrain();
 
 	glm::mat4 ShadowRenderer();
-	void Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLight, std::vector<PointLight*> pointLights);
+	void Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLight, std::vector<PointLight*> pointLights, bool terrain);
 	void SetShadowShader(char vertexShader[], char fragmentShader[]);
 	void SetShader(char shader[]);
 

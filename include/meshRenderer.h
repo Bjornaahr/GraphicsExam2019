@@ -8,7 +8,7 @@ private:
 	Mesh *mesh;
 
 public:
-	void Render(CameraMovement *cam, std::unique_ptr<Transform> const &m_Transform, DirectionalLight* dirLight, std::vector<PointLight*> pointLights);
+	void Render(CameraMovement *cam, std::unique_ptr<Transform> const &m_Transform, DirectionalLight* dirLight, std::vector<PointLight*> pointLights, bool isTerrain);
 	void Init();
 	void SetShadowShader(char vertexShader[], char fragmentShader[]);
 	void SetShader(char shader[]);

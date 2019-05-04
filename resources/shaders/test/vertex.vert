@@ -89,10 +89,10 @@ void main()
 	FragPosLightSpace = lightSpaceMatrix * vec4(FragPos, 1.0);
 
 
-	height = texture2D(tex_heightmap,aPos.xz).x;
-	height *= 5;
+	height = texture(tex_heightmap, aPos.xz).r;
+	height *= 20;
 
 
-	gl_Position = MVP * vec4(aPos.x, aPos.y + height, aPos.z, 1.0); 
+	gl_Position = MVP * vec4(aPos.x, height, aPos.z, 1.0); 
 	
 }

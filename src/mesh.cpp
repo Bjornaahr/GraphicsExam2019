@@ -296,7 +296,7 @@ void Mesh::RenderTerrain() {
 
 
 
-void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLight, std::vector<PointLight*> pointLights) {
+void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLight, std::vector<PointLight*> pointLights, bool terrain) {
 
 	m_Lights = pointLights;
 	m_dirLight = dirLight;
@@ -425,7 +425,7 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 
 		
 
-		if (true) {
+		if (terrain) {
 			GLuint heightMapID;
 			heightMapID = activeShader.getUniformLocation("tex_heightmap");
 

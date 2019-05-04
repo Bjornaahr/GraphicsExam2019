@@ -5,7 +5,7 @@ void MeshRenderer::Init() {
 
 }
 
-void MeshRenderer::Render(CameraMovement *cam, std::unique_ptr<Transform> const &m_Transform, DirectionalLight* dirLight, std::vector<PointLight*> pointLights){
+void MeshRenderer::Render(CameraMovement *cam, std::unique_ptr<Transform> const &m_Transform, DirectionalLight* dirLight, std::vector<PointLight*> pointLights, bool isTerrain){
 	float rot = 0;
 
 
@@ -19,7 +19,7 @@ void MeshRenderer::Render(CameraMovement *cam, std::unique_ptr<Transform> const 
 	glm::mat4 scale = glm::scale(modelMatrix, m_Transform.get()->scale);
 
 	glm::mat4 model = translate * rotateM * scale;
-	mesh->Render(cam, model, dirLight, pointLights);
+	mesh->Render(cam, model, dirLight, pointLights, isTerrain);
 }
 
 void MeshRenderer::SetShadowShader(char vertexShader[], char fragmentShader[]) {

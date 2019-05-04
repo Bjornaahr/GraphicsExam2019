@@ -22,7 +22,7 @@ public:
 	virtual void Init();
 	virtual void Input();
 	virtual void Update();
-	virtual void Render(CameraMovement *cam, std::unique_ptr<Transform> const &m_Transform, DirectionalLight* dirLight, std::vector<PointLight*> pointLights);
+	virtual void Render(CameraMovement *cam, std::unique_ptr<Transform> const &m_Transform, DirectionalLight* dirLight, std::vector<PointLight*> pointLights, bool isTerrain);
 	virtual void SetShadowShader(char vertexShader[], char fragmentShader[]);
 	virtual void SetShader(char shader[]);
 	virtual void LoadMesh(const std::string& Filename);

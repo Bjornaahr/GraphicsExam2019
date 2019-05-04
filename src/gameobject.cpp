@@ -6,9 +6,10 @@
 #include <iostream>
 #include <algorithm>
 
-GameObject::GameObject(std::string name) {
+GameObject::GameObject(std::string name, bool isTerrain) {
 	Name = name;
 	m_Transform = std::unique_ptr<Transform>(new Transform{ glm::vec3(0,0,0), glm::vec3(1,1,1), glm::vec3(0,0,0) });
+	this->isTerrain = isTerrain;
 }
 
 
@@ -95,7 +96,7 @@ void GameObject::Render(CameraMovement* cam, DirectionalLight* dirLight, std::ve
 
 	for (GameComponent *component : components) {
 		//std::unique_ptr<Transform> t = std::unique_ptr<Transform>(m_Transform.get());
-		component->Render(cam, m_Transform, dirLight, pointLights);
+		component->Render(cam, m_Transform, dirLight, pointLights, isTerrain);
 	}
 
 	for (auto& child : children) {

@@ -51,7 +51,10 @@ void setup() {
 		
 
 	renderer = new MeshRenderer();
-	Dragon = std::unique_ptr<GameObject>(new GameObject("Model1"));
+	newRender1 = new MeshRenderer();
+	Dragon = std::unique_ptr<GameObject>(new GameObject("Terrain", true));
+	TestModel = std::unique_ptr<GameObject>(new GameObject("Deer"));
+
 	Camera = new CameraMovement();
 
 
@@ -63,8 +66,14 @@ void setup() {
 	Dragon->LoadMesh("resources/models/plane/untitled.obj");
 	Dragon->SetShader("test");
 	//Dragon->SetShader("resources/shaders/shadow.vert", "resources/shaders/shadow.frag", "shadow");
-
 	models.push_back(std::move(Dragon));
+
+
+	TestModel->AddComponent(newRender1);
+	TestModel->LoadMesh("resources/models/deer/deer.obj");
+	TestModel->SetShader("shader");
+	//Dragon->SetShader("resources/shaders/shadow.vert", "resources/shaders/shadow.frag", "shadow");
+	models.push_back(std::move(TestModel));
 
 	
 	glClearDepth(1.0f);
