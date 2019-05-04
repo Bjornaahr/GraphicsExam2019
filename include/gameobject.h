@@ -13,10 +13,10 @@ private:
 	std::string Name;
 	bool selected = false;
 	std::unique_ptr<Transform> m_Transform;
-	bool isTerrain = false;
+	bool Terrain;
 
 public:
-	GameObject(std::string name, bool isTerrain = false);
+	GameObject(std::string name, bool isTerrain);
 	void Update(std::unique_ptr<Transform> transform);
 	void Input();
 	void AddChild(std::unique_ptr<GameObject> child);

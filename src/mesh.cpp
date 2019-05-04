@@ -217,6 +217,12 @@ void Mesh::SetShader(char shader[]) {
 	activeShader = createProgram(vert, frag);
 	//activeShadowShader = createProgram(svert, sfrag);
 
+
+	if (strcmp(shader, "test") == 0) {
+		activeShadowShader = createProgram(vert, frag);
+	}
+
+
 }
 
 void Mesh::SetShadowShader(char vertexShader[], char fragmentShader[]) {
@@ -307,8 +313,14 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 	//activeShadowShader = shaders.find("shadow")->second;
 	//activeShadowShader.bind();
 	//glm::mat4 lsm = this->ShadowRenderer();
-	activeShader.bind();
 
+
+	if (terrain) {
+		activeShadowShader.bind();
+	}
+	else {
+		activeShader.bind();
+	}
 
 
 
@@ -423,7 +435,6 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 		glUniform3fv(specularID, 1, glm::value_ptr(specular));
 		glUniform1f(shininessID, shininess);
 
-		
 
 		if (terrain) {
 			GLuint heightMapID;
