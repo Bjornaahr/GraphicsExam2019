@@ -1,6 +1,6 @@
 # GraphicsExam
 
-Task 1:
+## Task 1:
 - [ ] Generate a terrain for the purpose of rendering. You are free to use any algorithm of choice
 (e.g., Perlin Noise Generator or Fractional Brownian Motion).
 - [ ] Think about what you can do to make the terrain look realistic by using shaping functions,
@@ -8,7 +8,7 @@ e.g., (1 - abs(1 - 2x)) to generate creases
 - [ ] The output should serve as input for the following task.
 - [ ] Generate more complex terrain that contains creases and valleys
 
-Task 2:
+## Task 2:
 - [x] Load the heightmap (either generated or one of the ones provided in the resources - see
 below) into a scene and color elevation ranges to resemble a somewhat realistic
 representation of altitudinal zones. You can assume that the lowest elevation level is water,
@@ -28,7 +28,7 @@ cycle)
 - [ ] Render/animate clouds or water surface
 - [ ] Use particle systems to represent rain/snow
 
-Task 3:
+## Task 3:
 - [x] As the last step, add a model of a deer to the scene (model provided in resources - see
 below).
 - [ ] The model should be navigable along the rendered scene and leave a trail (i.e., by
