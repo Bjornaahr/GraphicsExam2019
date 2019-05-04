@@ -51,6 +51,8 @@ out vec4 FragColor;
 layout(binding=1) uniform sampler2D texOne;
 layout(binding=2) uniform sampler2D stoneTex;
 layout(binding=3) uniform sampler2D snowTex;
+layout(binding=4) uniform sampler2D sandTex;
+
 
 
 
@@ -120,12 +122,15 @@ void main()
 		result += PointLightCalc(pointLights[i], norm, FragPos, viewDir);
 
 
-		
-	if(fHeight < 15){
+	if(fHeight < 5){
+	    FragColor = vec4(texture(sandTex, Texcoord).rgb  * result, 1.);
+	}
+	else if(fHeight < 15){
     FragColor = vec4(texture(texOne, Texcoord).rgb  * result, 1.);
 	} 
 	else if(fHeight < 30){
 	FragColor = vec4(texture(stoneTex, Texcoord).rgb  * result, 1.);
-	} else 	FragColor = vec4(texture(snowTex, Texcoord).rgb  * result, 1.);
+	} 
+	else 	FragColor = vec4(texture(snowTex, Texcoord).rgb  * result, 1.);
 
  }

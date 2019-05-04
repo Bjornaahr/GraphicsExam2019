@@ -199,6 +199,8 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename) {
 	GrassTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/default.png");
 	StoneTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/Stone.png");
 	SnowTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/Snow.png");
+	SandTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/Sand.png");
+
 
 
 	depthMap = new Texture();
@@ -448,7 +450,7 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 			GrassTexture->Bind(GL_TEXTURE1);
 			StoneTexture->Bind(GL_TEXTURE2);
 			SnowTexture->Bind(GL_TEXTURE3);
-
+			SandTexture->Bind(GL_TEXTURE4);
 		}
 
 
