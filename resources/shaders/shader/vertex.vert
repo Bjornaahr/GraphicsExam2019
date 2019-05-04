@@ -13,6 +13,8 @@ layout(std140, binding = 0) uniform Matrices{
 
 uniform vec3 alightColor;
 uniform vec3 aviewPos;
+//uniform vec2 screenSize;
+
 
 out vec3 Color;
 out vec2 Texcoord;

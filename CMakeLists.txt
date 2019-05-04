@@ -66,6 +66,8 @@ target_sources(${PROJECT}
 	  PRIVATE ${SRCDIR}/Components/gameComponent.cpp
 
 	  PRIVATE ${SRCDIR}/Terrain/Terrain.cpp
+	  PRIVATE ${SRCDIR}/Terrain/HeightmapGenerator.cpp
+
 
 
 	  PRIVATE ${LIBDIR}/ImGUI/imgui_demo.cpp

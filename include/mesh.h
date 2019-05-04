@@ -115,4 +115,6 @@ private:
 
 	std::vector<PointLight*> m_Lights;
 	DirectionalLight* m_dirLight;
+	glm::vec2 screenSize;
+
 };

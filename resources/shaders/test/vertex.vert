@@ -14,6 +14,7 @@ layout(std140, binding = 0) uniform Matrices{
 uniform vec3 alightColor;
 uniform vec3 aviewPos;
 uniform sampler2D tex_heightmap; 
+//uniform vec2 screenSize;
 
 
 

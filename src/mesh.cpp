@@ -18,6 +18,7 @@ Mesh::MeshEntry::~MeshEntry()
 
 Mesh::Mesh()
 {
+	screenSize = glm::vec2(1600, 900);
 }
 
 
@@ -138,7 +139,7 @@ bool Mesh::InitFromScene(const aiScene* pScene, const std::string& Filename) {
 
 	glBindBufferRange(GL_UNIFORM_BUFFER, 0, uboMatrices, 0, 2 * sizeof(glm::mat4));
 
-	glm::mat4 proj = glm::perspective(glm::radians(45.0f), (GLfloat)1024 / (GLfloat)764, 0.1f, -10.0f);
+	glm::mat4 proj = glm::perspective(glm::radians(45.0f), (GLfloat)screenSize.x / (GLfloat)screenSize.y, 0.1f, -10.0f);
 
 	glBindBuffer(GL_UNIFORM_BUFFER, uboMatrices);
 	glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(proj));
@@ -195,7 +196,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename) {
 			}
 		}
 	}
-	HeightMap = new Texture(GL_TEXTURE_2D, "resources/models/plane/model2-lowTEST.png");
+	HeightMap = new Texture(GL_TEXTURE_2D, "resources/models/plane/heightMap.png");
 	GrassTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/default.png");
 	StoneTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/Stone.png");
 	SnowTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/Snow.png");
@@ -453,7 +454,11 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 			SandTexture->Bind(GL_TEXTURE4);
 		}
 
+		//GLint screenSizeID;
 
+		//screenSizeID = activeShader.getUniformLocation("screenSize");
+
+		//glUniform2fv(screenSizeID, 1, glm::value_ptr(screenSize));
 
 
 		glDrawElementsBaseVertex(GL_TRIANGLES,

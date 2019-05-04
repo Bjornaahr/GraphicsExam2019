@@ -15,6 +15,7 @@
 #include <cameraMovement.h>
 #include <meshRenderer.h>
 #include <Terrain/Terrain.h>
+#include <Terrain/HeightmapGenerator.h>
 
 
 
@@ -35,7 +36,7 @@ MeshRenderer* newRender1;
 std::unique_ptr<Transform> modelTransform;
 DirectionalLight* dLight;
 std::vector<PointLight*> m_Lights;
-Terrain *terrain;
+HeightMapGenerator* heightmapgen;
 //DirectionalLight* dLight;
 
  
@@ -47,8 +48,9 @@ bool firstMouse = true;
 void setup() {
 
 
-	terrain = new Terrain(4, 4);
-		
+
+
+	heightmapgen = new HeightMapGenerator();
 
 	renderer = new MeshRenderer();
 	newRender1 = new MeshRenderer();
@@ -56,7 +58,6 @@ void setup() {
 	TestModel = std::unique_ptr<GameObject>(new GameObject("Deer", false));
 
 	Camera = new CameraMovement();
-
 
 
 
@@ -115,8 +116,6 @@ void game_loop(GLFWwindow *w, double deltaTime) {
 
 
 	Camera->processInput(w);
-
-	terrain->Render(Camera, glm::mat4(0.0f), dLight, m_Lights);
 
 
 	for (auto& gameObject : models) {
