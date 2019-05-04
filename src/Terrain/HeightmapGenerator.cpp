@@ -4,9 +4,9 @@
 
 HeightMapGenerator::HeightMapGenerator() {
 
+	int size = 512;
 
-
-	unsigned char *heightmap = new unsigned char[3];
+	unsigned char *heightmap = new unsigned char[(size *size)*3];
 
 
 	unsigned char r, g, b;
@@ -16,15 +16,25 @@ HeightMapGenerator::HeightMapGenerator() {
 	b = 0;
 
 
-	for (int y = 0; y < 128; y++) {
-		for (int x = 0; x < 128; x++) {
+	for (int y = 0; y < size; y++) {
+		for (int x = 0; x < size; x++) {
 
-			int r, g, b;
-
-			if (y % 2 == 0) {
+			if (y % 8 == 0) {
 				r = 255; g = 255; b = 255;
+
+				heightmap[(y * size + x) * 3 + 0] = r;
+				heightmap[(y * size + x) * 3 + 1] = g;
+				heightmap[(y * size + x) * 3 + 2] = b;
+
+
 			}
-			else { r = 0; g = 0; b = 0; }
+			else { 
+			r = 0; g = 0; b = 0;
+			
+			heightmap[(y * size + x) * 3 + 0] = r;
+			heightmap[(y * size + x) * 3 + 1] = g;
+			heightmap[(y * size + x) * 3 + 2] = b;
+			}
 			
 	
 		}
@@ -33,5 +43,5 @@ HeightMapGenerator::HeightMapGenerator() {
 	}
 
 
-	stbi_write_bmp("resources/models/plane/heightMap.png", 1, 1, 3, heightmap);
+	stbi_write_bmp("resources/models/plane/heightMap.png", size, size, 3, heightmap);
 }
