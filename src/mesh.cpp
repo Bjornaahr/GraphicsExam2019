@@ -423,14 +423,14 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 		glUniform3fv(specularID, 1, glm::value_ptr(specular));
 		glUniform1f(shininessID, shininess);
 
+		
 
-
-		if (false) {
+		if (true) {
 			GLuint heightMapID;
 			heightMapID = activeShader.getUniformLocation("tex_heightmap");
 
 			HeightMap->Bind();
-			glUniform1i(heightMapID, 1);
+			glUniform1i(heightMapID, 0);
 
 		}
 

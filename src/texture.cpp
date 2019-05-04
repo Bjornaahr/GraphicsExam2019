@@ -19,14 +19,15 @@ Texture::Texture(GLenum TextureTarget, const std::string& file) {
 
 	glGenTextures(1, &this->ID);
 	//Binds texture to this object
+	GFX_DEBUG("Texture ID: %i", this->ID);
 	glBindTexture(TextureTarget, this->ID);
 
 	glTexImage2D(TextureTarget, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	//Set all texture parameters
 	glTexParameteri(TextureTarget, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(TextureTarget, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(TextureTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(TextureTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(TextureTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(TextureTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glGenerateMipmap(TextureTarget);
 
 	//Unbinds texture
@@ -41,8 +42,8 @@ Texture::Texture() {
 	glGenTextures(1, &this->ID);
 	glBindTexture(GL_TEXTURE_2D, this->ID);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 }
