@@ -4,6 +4,8 @@
 
 Texture::Texture(GLenum TextureTarget, const std::string& file) {
 
+	
+
 	GFX_DEBUG("Loading image: %s", file.c_str())
 	int width, height;
 	//Loads image from file
@@ -50,9 +52,9 @@ Texture::Texture() {
 
 
 //Binds texture
-void Texture::Bind() const
+void Texture::Bind(GLenum TextureUnit) const
 {
-	glActiveTexture(GL_TEXTURE0);
+	glActiveTexture(TextureUnit);
 	glBindTexture(GL_TEXTURE_2D, this->ID);
 }
 

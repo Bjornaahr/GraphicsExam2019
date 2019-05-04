@@ -108,6 +108,11 @@ private:
 	std::vector<Texture*> m_Textures;
 	Texture* HeightMap;
 	Texture* depthMap;
+	Texture* SandTexture;
+	Texture* GrassTexture;
+	Texture* StoneTexture;
+	Texture* SnowTexture;
+
 	std::vector<PointLight*> m_Lights;
 	DirectionalLight* m_dirLight;
 };

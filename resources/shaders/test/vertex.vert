@@ -13,6 +13,9 @@ layout(std140, binding = 0) uniform Matrices{
 
 uniform vec3 alightColor;
 uniform vec3 aviewPos;
+uniform sampler2D tex_heightmap; 
+
+
 
 out vec3 Color;
 out vec2 Texcoord;
@@ -26,7 +29,6 @@ out float time;
 uniform mat4 model      =mat4(1);
 uniform mat4 lightSpaceMatrix =mat4(1);;
 
-uniform sampler2D tex_heightmap; 
 
 
 
@@ -90,7 +92,7 @@ void main()
 
 
 	height = texture(tex_heightmap, aTexCoords).r;
-	height *= 20;
+	height *= 50;
 
 
 	gl_Position = MVP * vec4(aPos.x, height, aPos.z, 1.0); 

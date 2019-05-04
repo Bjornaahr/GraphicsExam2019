@@ -13,8 +13,8 @@ public:
 	Texture(GLenum TextureTarget, const std::string& file);
 	Texture();
 	//Binds texture to active GL_TEXTURE_2D object
-	void Bind() const;
+	void Bind(GLenum TextureUnit) const;
 	void BindShadow() const;
-
+	GLenum TextureSpot;
 
 };

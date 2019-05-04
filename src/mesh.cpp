@@ -196,6 +196,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename) {
 		}
 	}
 	HeightMap = new Texture(GL_TEXTURE_2D, "resources/models/plane/model2-lowTEST.png");
+	GrassTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/default.png");
 
 	depthMap = new Texture();
 	return true;
@@ -330,7 +331,11 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 		assert(MaterialIndex < m_Textures.size());
 
 		if (MaterialIndex < m_Textures.size() && m_Textures[MaterialIndex]) {
-			m_Textures[MaterialIndex]->Bind();
+			//GLuint texOne1ID;
+			//texOne1ID = activeShader.getUniformLocation("texOne");
+
+			m_Textures[MaterialIndex]->Bind(GL_TEXTURE0);
+			//glUniform1i(texOne1ID, 0);
 		}
 
 		//glActiveTexture(GL_TEXTURE1);
@@ -436,11 +441,19 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 
 
 		if (terrain) {
+
+
+
 			GLuint heightMapID;
 			heightMapID = activeShader.getUniformLocation("tex_heightmap");
-
-			HeightMap->Bind();
+			HeightMap->Bind(GL_TEXTURE0);
 			glUniform1i(heightMapID, 0);
+
+			GLuint texOne1ID;
+			texOne1ID = activeShader.getUniformLocation("texOne");
+			GrassTexture->Bind(GL_TEXTURE1);
+			glUniform1i(texOne1ID, 1);
+
 
 		}
 

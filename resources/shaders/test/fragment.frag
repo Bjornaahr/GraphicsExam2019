@@ -45,6 +45,8 @@ uniform int gNumOfLights;
 
 out vec4 FragColor;
 uniform sampler2D texOne;
+uniform sampler2D stoneTex;
+
 uniform sampler2D shadowMap;
 uniform float u_Time;
 
@@ -103,6 +105,7 @@ specular *= attenuation;
 void main()
  {
 
+	
     vec3 norm = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
 
@@ -111,7 +114,7 @@ void main()
 		result += PointLightCalc(pointLights[i], norm, FragPos, viewDir);
 
 
-
+		
 
     FragColor = vec4(texture(texOne, Texcoord).rgb * result, 1.);
  }
