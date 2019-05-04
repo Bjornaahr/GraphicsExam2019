@@ -1,4 +1,4 @@
-#version 330 core
+#version 420 core
 #define NR_POINTLIGHTS 99
 
 
@@ -44,8 +44,12 @@ in vec4 FragPosLightSpace;
 uniform int gNumOfLights;
 
 out vec4 FragColor;
-uniform sampler2D texOne;
-uniform sampler2D stoneTex;
+//uniform sampler2D texOne;
+//uniform sampler2D stoneTex;
+
+layout(binding=1) uniform sampler2D texOne;
+layout(binding=2) uniform sampler2D stoneTex;
+
 
 uniform sampler2D shadowMap;
 uniform float u_Time;
@@ -116,5 +120,5 @@ void main()
 
 		
 
-    FragColor = vec4(texture(texOne, Texcoord).rgb * result, 1.);
+    FragColor = vec4(texture(stoneTex, Texcoord).rgb  * result, 1.);
  }

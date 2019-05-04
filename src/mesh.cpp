@@ -197,6 +197,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename) {
 	}
 	HeightMap = new Texture(GL_TEXTURE_2D, "resources/models/plane/model2-lowTEST.png");
 	GrassTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/default.png");
+	StoneTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/Stone.png");
 
 	depthMap = new Texture();
 	return true;
@@ -444,15 +445,14 @@ void Mesh::Render(CameraMovement* cam, glm::mat4 model, DirectionalLight* dirLig
 
 
 
-			GLuint heightMapID;
-			heightMapID = activeShader.getUniformLocation("tex_heightmap");
+			//GLuint heightMapID;
+			//heightMapID = activeShader.getUniformLocation("tex_heightmap");
 			HeightMap->Bind(GL_TEXTURE0);
-			glUniform1i(heightMapID, 0);
+			//glUniform1i(heightMapID, 0);
 
-			GLuint texOne1ID;
-			texOne1ID = activeShader.getUniformLocation("texOne");
 			GrassTexture->Bind(GL_TEXTURE1);
-			glUniform1i(texOne1ID, 1);
+
+			StoneTexture->Bind(GL_TEXTURE2);
 
 
 		}
