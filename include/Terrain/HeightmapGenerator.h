@@ -2,11 +2,16 @@
 
 #include <stb_image_aug.h>
 #include <glm/glm.hpp>
+#include <PerlinNoise.hpp>
+
 
 class HeightMapGenerator {
 public:
 	HeightMapGenerator();
 private:
-	float FBM();
+	void FBM();
 	float noise(glm::vec2 st);
+	int size;
+	siv::PerlinNoise perlin;
+	double** m_data = nullptr;
 };

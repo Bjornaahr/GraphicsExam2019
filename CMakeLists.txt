@@ -61,6 +61,8 @@ target_sources(${PROJECT}
 	  PRIVATE ${SRCDIR}/ShaderProgram.cpp
 	  PRIVATE ${SRCDIR}/cameraMovement.cpp
 	  PRIVATE ${SRCDIR}/gameobject.cpp
+	 # PRIVATE ${SRCDIR}/PerlinNoise.hpp
+
 
 	  PRIVATE ${SRCDIR}/Components/meshRenderer.cpp
 	  PRIVATE ${SRCDIR}/Components/gameComponent.cpp
