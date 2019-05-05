@@ -7,9 +7,9 @@
 
 class HeightMapGenerator {
 public:
-	HeightMapGenerator();
+	HeightMapGenerator(int octaves, double frequency);
 private:
-	void FBM();
+	void HeightMapGenerator::PerlinNoise(int octaves, double frequency);
 	float noise(glm::vec2 st);
 	int size;
 	siv::PerlinNoise perlin;

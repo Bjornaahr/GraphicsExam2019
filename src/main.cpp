@@ -50,7 +50,7 @@ void setup() {
 
 
 
-	heightmapgen = new HeightMapGenerator();
+	heightmapgen = new HeightMapGenerator(6, 2);
 
 	renderer = new MeshRenderer();
 	newRender1 = new MeshRenderer();
