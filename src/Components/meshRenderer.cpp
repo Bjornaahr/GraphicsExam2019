@@ -29,7 +29,7 @@ void MeshRenderer::SetShader(char shader[]) {
 	mesh->SetShader(shader);
 }
 
-void MeshRenderer::LoadMesh(const std::string& Filename) {
+void MeshRenderer::LoadMesh(const std::string& Filename, char path[]) {
 	mesh = new Mesh();
-	mesh->LoadMesh(Filename);
+	mesh->LoadMesh(Filename, path);
 }

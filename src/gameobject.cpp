@@ -63,9 +63,9 @@ void GameObject::AddComponent(GameComponent *component) {
 	components.push_back(component);
 }
 
-void GameObject::LoadMesh(const std::string& Filename) {
+void GameObject::LoadMesh(const std::string& Filename, char path[]) {
 	for (GameComponent *component : components) {
-		component->LoadMesh(Filename);
+		component->LoadMesh(Filename, path);
 	}
 }
 

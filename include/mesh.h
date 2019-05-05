@@ -57,7 +57,7 @@ public:
 	Mesh();
 	~Mesh();
 
-	bool LoadMesh(const std::string& Filename);
+	bool LoadMesh(const std::string& Filename, char path[]);
 	void LoadTerrain(float *vertecies, float *textureCoords, float *normals, int *indices);
 	void RenderTerrain();
 
@@ -116,5 +116,6 @@ private:
 	std::vector<PointLight*> m_Lights;
 	DirectionalLight* m_dirLight;
 	glm::vec2 screenSize;
+	char heightMapPath[];
 
 };

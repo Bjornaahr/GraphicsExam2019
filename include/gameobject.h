@@ -21,7 +21,7 @@ public:
 	void Input();
 	void AddChild(std::unique_ptr<GameObject> child);
 	void AddComponent(GameComponent *component);
-	void LoadMesh(const std::string& Filename);
+	void LoadMesh(const std::string& Filename, char path[] = "resources/models/plane/heightMap.png");
 	void SetShadowShader(char vertexShader[], char fragmentShader[]);
 	void SetShader(char shader[]);
 	void Render(CameraMovement* cam, DirectionalLight* dirLight, std::vector<PointLight*> pointLights);

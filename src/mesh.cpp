@@ -34,10 +34,11 @@ void Mesh::Clear()
 
 
 
-bool Mesh::LoadMesh(const std::string& Filename) {
+bool Mesh::LoadMesh(const std::string& Filename, char path[]) {
 	//Clears previous loaded mesh
 	Clear();
 
+	strcpy(heightMapPath, path);
 
 	glGenVertexArrays(1, &m_VAO);
 	glBindVertexArray(m_VAO);
@@ -197,7 +198,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename) {
 			}
 		}
 	}
-	HeightMap = new Texture(GL_TEXTURE_2D, "resources/models/plane/heightMap.png");
+	HeightMap = new Texture(GL_TEXTURE_2D, heightMapPath);
 	GrassTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/default.png");
 	StoneTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/Stone.png");
 	SnowTexture = new Texture(GL_TEXTURE_2D, "resources/models/plane/Snow.png");
