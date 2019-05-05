@@ -1,7 +1,7 @@
 # GraphicsExam
 
 ## Task 1:
-- [ ] Generate a terrain for the purpose of rendering. You are free to use any algorithm of choice
+- [x] Generate a terrain for the purpose of rendering. You are free to use any algorithm of choice
 (e.g., Perlin Noise Generator or Fractional Brownian Motion).
 - [ ] Think about what you can do to make the terrain look realistic by using shaping functions,
 e.g., (1 - abs(1 - 2x)) to generate creases
@@ -37,6 +37,6 @@ discolouring the walked path)
 button ‘t’.
 - [ ] The user should be able to control the model using the arrow or wasd keys.
 - [ ] Animate the model
-- [ ] Add additional models
+- [x] Add additional models
 - [ ] Add multiple deer models and perhaps even coordinate behaviour
 - [ ] Add realistic physics (e.g., gravity effects)
