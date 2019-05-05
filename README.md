@@ -40,3 +40,19 @@ button ‘t’.
 - [x] Add additional models
 - [ ] Add multiple deer models and perhaps even coordinate behaviour
 - [ ] Add realistic physics (e.g., gravity effects)
+
+
+## Things "working"
+* Loading heighmap (Have to ignore some errors to continue)
+* Generating heightmap
+* Freemoving camera
+* Dynamic movment of light
+* Dynamic changing light
+* Deer is in the scene
+* You can add more models via UI
+* Height based texturing of terrain
+
+## Things that went to shit
+* I was not able to make a new renderer because of our framework
+* I load in a plane obj instead of creating one beacuse of not being able to make a new renderer
+* I displace terrain in vertex shader making my normals weird, and could not figure out a proper way to calculate them from heightmap
