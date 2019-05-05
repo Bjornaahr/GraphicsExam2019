@@ -5,7 +5,7 @@
 (e.g., Perlin Noise Generator or Fractional Brownian Motion).
 - [ ] Think about what you can do to make the terrain look realistic by using shaping functions,
 e.g., (1 - abs(1 - 2x)) to generate creases
-- [ ] The output should serve as input for the following task.
+- [x] The output should serve as input for the following task.
 - [ ] Generate more complex terrain that contains creases and valleys
 
 ## Task 2:
