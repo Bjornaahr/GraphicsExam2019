@@ -25,5 +25,17 @@ public:
 	float yaw, pitch;
 
 	CameraMovement();
-	void processInput(GLFWwindow *window);
+	void processInput(GLFWwindow *window, bool mouseMove);
+
+	glm::vec3 CameraMovement::getPosition();
+
+	void CameraMovement::setPosition(glm::vec3 pos);
+
+	float getPitch();
+	float getYaw();
+
+	void CameraMovement::setYaw(float Ya);
+	void CameraMovement::setPitch(float Pit);
+
+	float cameraSpeed = 22.5;
 };

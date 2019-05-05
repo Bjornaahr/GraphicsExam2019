@@ -87,6 +87,7 @@ bool Mesh::InitFromScene(const aiScene* pScene, const std::string& Filename) {
 		numVertices += pScene->mMeshes[i]->mNumVertices;
 		numIndices += m_Entries[i].NumIndices;
 
+		GFX_DEBUG("numVertecis %i", numVertices);
 
 	}
 

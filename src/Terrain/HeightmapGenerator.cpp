@@ -7,7 +7,7 @@
 
 HeightMapGenerator::HeightMapGenerator(int octaves, double frequency) {
 
-	size = 512;
+	size = 1024;
 
 	m_data = new double*[size];
 	for (int h = 0; h < size; h++)

@@ -44,13 +44,15 @@ HeightMapGenerator* heightmapgen;
 float lastX = WIDTH / 2.0f;
 float lastY = HEIGHT / 2.0f;
 bool firstMouse = true;
+bool mouseMove = true;
+
 //Set up all the renderers, map, player, etc.
 void setup() {
 
 
 
 
-	heightmapgen = new HeightMapGenerator(6, 2);
+	heightmapgen = new HeightMapGenerator(6, 4);
 
 	renderer = new MeshRenderer();
 	newRender1 = new MeshRenderer();
@@ -114,9 +116,8 @@ void game_loop(GLFWwindow *w, double deltaTime) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-
-	Camera->processInput(w);
-
+		Camera->processInput(w, mouseMove);
+	
 
 	for (auto& gameObject : models) {
 		gameObject->Render(Camera, dLight, m_Lights);
@@ -129,20 +130,48 @@ void game_loop(GLFWwindow *w, double deltaTime) {
 
 
 
-void UI(double deltaTime) {
+void UI(double deltaTime, GLFWwindow *w) {
+
+
+
+
+	static bool showUI = true;
 
 	bool showLoader = true;
-	bool useShader = true;
+	bool useShader = false;
 	bool showSceneGraph = true;
 	bool move = true;
 	bool showModelTransform = true;
 	bool showLighting = true;
+	bool showCameraControlls = true;
 
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 
+	if (glfwGetKey(w, GLFW_KEY_1) == GLFW_PRESS) {
 
+		if (!showUI) {
+			showUI = false;
+			showLoader = false;
+			useShader = false;
+			showSceneGraph = false;
+			move = false;
+			showModelTransform = false;
+			showLighting = false;
+			showCameraControlls = false;
+		}
+		else {
+			showUI = true;
+			showLoader = true;
+			useShader = false;
+			showSceneGraph = true;
+			move = true;
+			showModelTransform = true;
+			showLighting = true;
+			showCameraControlls = true;
+		}
+	}
 
 
 	if (showLoader) {
@@ -437,6 +466,51 @@ void UI(double deltaTime) {
 	ImGui::End();
 	}
 
+	if (showCameraControlls) {
+
+		static float camPosX, camPosY, camPosZ, pitch, yaw, speed = Camera->cameraSpeed;
+
+		ImGui::Begin("Camera UI");
+
+		glm::vec3 camPos = Camera->getPosition();
+
+		camPosX = camPos.x;
+		camPosY = camPos.y;
+		camPosZ = camPos.z;
+		pitch = Camera->getPitch();
+		yaw = Camera->getYaw();
+
+
+		ImGui::InputFloat("Camera X", &camPosX, 0.1f, 1.0f, "%.1f");
+		ImGui::InputFloat("Camera Y", &camPosY, 0.1f, 1.0f, "%.1f");
+		ImGui::InputFloat("Camera Z", &camPosZ, 0.1f, 1.0f, "%.1f");
+
+		ImGui::InputFloat("Pitch", &pitch, 0.1f, 1.0f, "%.1f");
+		ImGui::InputFloat("Yaw", &yaw, 0.1f, 1.0f, "%.1f");
+
+		ImGui::InputFloat("Speed", &speed, 0.1f, 1.0f, "%.1f");
+
+		Camera->cameraSpeed = speed;
+
+		if (ImGui::Button("Change camera movment")) {
+			if(mouseMove){
+				mouseMove = false;
+			}
+			else mouseMove = true;
+		}
+
+
+		if (!mouseMove) {
+			Camera->setPosition(glm::vec3(camPosX, camPosY, camPosZ));
+			Camera->setPitch(pitch);
+			Camera->setYaw(yaw);
+		}
+
+
+		ImGui::End();
+	}
+
+
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
@@ -504,7 +578,7 @@ int main(void) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		deltaTime = currentTime - oldTime;
 		game_loop(window, deltaTime);
-		UI(deltaTime);
+		UI(deltaTime, window);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		oldTime = currentTime;

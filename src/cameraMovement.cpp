@@ -14,23 +14,27 @@ CameraMovement::CameraMovement() {
 	lastY = 764.0f / 2.0f;
 }
 
-void CameraMovement::processInput(GLFWwindow *window)
+void CameraMovement::processInput(GLFWwindow *window, bool mouseMove)
 {
 	float currentFrame = glfwGetTime();
 	deltaTime = currentFrame - lastFrame;
 	lastFrame = currentFrame;
-	float cameraSpeed = 20.5f * deltaTime;
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		cameraPos += cameraSpeed * cameraFront;
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		cameraPos -= cameraSpeed * cameraFront;
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
-		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-		glfwGetCursorPos(window, &xpos, &ypos);
+	cameraSpeed *= deltaTime;
+	if (mouseMove) {
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+			cameraPos += cameraSpeed * cameraFront;
+		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+			cameraPos -= cameraSpeed * cameraFront;
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+			cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+			cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+	}
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS || !mouseMove) {
+		if (mouseMove) {
+			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			glfwGetCursorPos(window, &xpos, &ypos);
+		}
 
 		if (firstMouse)
 		{
@@ -67,3 +71,29 @@ void CameraMovement::processInput(GLFWwindow *window)
 	}
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_RELEASE) firstMouse = true;
 }
+
+
+glm::vec3 CameraMovement::getPosition() {
+	return cameraPos;
+}
+
+void CameraMovement::setPosition(glm::vec3 pos) {
+	cameraPos = pos;
+}
+
+
+float CameraMovement::getPitch() {
+	return pitch;
+}
+float CameraMovement::getYaw() {
+	return yaw;
+}
+
+void CameraMovement::setPitch(float pit) {
+	pitch = pit;
+}
+
+void CameraMovement::setYaw(float Ya) {
+	yaw = Ya;
+}
+
