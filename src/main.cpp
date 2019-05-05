@@ -83,7 +83,7 @@ void LoadNewModel(std::string modelPath, std::string modelName) {
 
 	NewModel = std::unique_ptr<GameObject>(new GameObject(modelName, false));
 	NewModel->AddComponent(newRender);
-	NewModel->LoadMesh(modelPath);
+	NewModel->LoadMesh(modelPath, "");
 	NewModel->SetShader("shader");	
 	
 	models.push_back(std::move_if_noexcept(NewModel));
@@ -135,7 +135,7 @@ void SetupTerrain(char path[]) {
 
 
 	TestModel->AddComponent(newRender1);
-	TestModel->LoadMesh("resources/models/deer/deer.obj");
+	TestModel->LoadMesh("resources/models/deer/deer.obj", "");
 	TestModel->SetShader("shader");
 	models.push_back(std::move(TestModel));
 

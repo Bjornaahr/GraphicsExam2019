@@ -12,5 +12,5 @@ public:
 	void Init();
 	void SetShadowShader(char vertexShader[], char fragmentShader[]);
 	void SetShader(char shader[]);
-	void LoadMesh(const std::string& Filename, char path[] = "resources/models/plane/heightMap.png");
+	void LoadMesh(const std::string& Filename, char path[]);
 };
