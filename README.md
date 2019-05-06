@@ -59,3 +59,19 @@ button ‘t’.
 * I displace terrain in vertex shader making my normals weird, and could not figure out a proper way to calculate them from heightmap
 * Heapstack corruption when you load/generate terrain that you can just skip and it works fine (Not sure why it happens)
 * It's raining(kinda)
+
+
+## How to run
+It uses cmake, just build it.
+
+## How to use it
+* Give a path to shader i.e (resources\models\plane\model2-low.png) and press the "Load heightmap" button or 
+* generate a new heightmap by pressing the "Randomly generate heightmap" button
+* Skip the two errors and wait for the ~~raindrops~~ cubes  to load
+* Change the camera speed to something not ridiculous
+* To change the camera using the UI press the "change camera movment" button
+* To change the transform of a GameObject click the top in the scenegraph and select a object in the scenegraph
+* To load a new model give a path i.e (resources\models\deer\deer.obj) give it a name and click "Load new Model" button
+* Move the camera with wasd and right click + movemouse to look around
+* To change light click on directional light and change the values you want
+* Add a pointlight: give it a uniqe name and click "Add new pointlight"
