@@ -1,6 +1,6 @@
 #include "texture.h"
 #include <SOIL.h>
-#include <stb_image_aug.h>
+#include <stb_image.h>
 
 Texture::Texture(GLenum TextureTarget, const std::string& file) {
 

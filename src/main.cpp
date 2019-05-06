@@ -28,9 +28,13 @@ const int WIDTH = 1600, HEIGHT = 900;
 std::unique_ptr<GameObject> NewModel;
 std::unique_ptr<GameObject> Dragon;
 std::unique_ptr<GameObject> TestModel;
+std::unique_ptr<GameObject> Particle;
+
 
 CameraMovement* Camera;
 std::vector<std::unique_ptr<GameObject>> models;
+std::vector<std::unique_ptr<GameObject>> particles;
+
 MeshRenderer* renderer;
 MeshRenderer* newRender;
 MeshRenderer* newRender1;
@@ -105,6 +109,13 @@ void game_loop(GLFWwindow *w, double deltaTime) {
 		for (auto& gameObject : models) {
 			gameObject->Render(Camera, dLight, m_Lights);
 		}
+
+		for (auto& particle : particles) {
+
+			particle->moveTransform();
+			particle->Render(Camera, dLight, m_Lights);
+		}
+
 	}
 
 }
@@ -134,8 +145,34 @@ void SetupTerrain(char path[]) {
 
 
 
+	
+
+	int x, z;
+	x = -100;
+	z = -100;
+
+	for (int i = 0; i < 198; i++) {
+		newRender = new MeshRenderer();
+		Particle = std::unique_ptr<GameObject>(new GameObject("Snowflake", false));
+		Particle->AddComponent(newRender);
+		Particle->LoadMesh("resources/models/cube/cube.obj", "");
+		Particle->SetShader("shader");
+
+
+		if (i % 14 == 0) {
+			z += 8 + (5 % (i + 1));
+			x = -100;
+		}
+
+		x += 10 + (5 % (i+1));
+
+		Particle->setTransform(glm::vec3(x, 300, z));
+
+		particles.push_back(std::move(Particle));
+	}
+
 	TestModel->AddComponent(newRender1);
-	TestModel->LoadMesh("resources/models/deer/deer.obj", "");
+	TestModel->LoadMesh("resources/models/deer/deer.obj", "k");
 	TestModel->SetShader("shader");
 	models.push_back(std::move(TestModel));
 
@@ -577,7 +614,7 @@ int main(void) {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	
 	// Open a window and create its OpenGL context
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Handin2", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "EXAM! PLZ HELP THIS IS A DISASTER!!!!", NULL, NULL);
 	if (window == NULL) {
 		GFX_ERROR("Failed to open GLFW window.\n");
 	}

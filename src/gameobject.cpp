@@ -5,11 +5,17 @@
 #include <imgui_impl_opengl3.h>
 #include <iostream>
 #include <algorithm>
+#include <time.h>
 
 GameObject::GameObject(std::string name, bool isTerrain) {
 	Name = name;
 	m_Transform = std::unique_ptr<Transform>(new Transform{ glm::vec3(0,0,0), glm::vec3(1,1,1), glm::vec3(0,0,0) });
     Terrain = isTerrain;
+
+	if (name == "Snowflake") {
+		GFX_DEBUG("Teeth");
+	}
+
 }
 
 
@@ -184,6 +190,29 @@ std::unique_ptr<Transform> GameObject::getTransform(){
 
 	return nullptr;
 	
+
+}
+
+
+//Make it rain
+void GameObject::moveTransform() {
+
+	srand(time(NULL));
+
+
+	if (m_Transform.get()->position.y < -3) {
+		m_Transform.get()->position.y = 200;
+	}
+
+	int x = m_Transform.get()->position.x;
+
+	m_Transform.get()->position.y -= ((rand() + x) % 3) + 0.3;
+
+}
+
+void GameObject::setTransform(glm::vec3 pos) {
+
+	m_Transform.get()->position = pos;
 
 }
 

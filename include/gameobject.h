@@ -33,4 +33,6 @@ public:
 	std::unique_ptr<Transform> getTransform();
 	GameObject* Search(std::string name);
 	bool SearchChild(std::string name);
+	void moveTransform();
+	void setTransform(glm::vec3 pos);
 };

@@ -94,7 +94,7 @@ void main()
 
 
 	height = texture(tex_heightmap, aTexCoords).r;
-	height *= 50;
+	height *= 40;
 
 	fHeight = height;
 
