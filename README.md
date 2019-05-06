@@ -19,7 +19,7 @@ mouse and whose position should be controllable by GUI-based specification. Alte
 or in addition, consider to the integration of zooming functionality.
 - [x] Illuminate the scene using the phong model. You should be able to position lights using the
 GUI.
-- [ ] Introduce rain and snowfall by introducing models of raindrops and/or snowflakes.
+- [x] Introduce rain and snowfall by introducing models of raindrops and/or snowflakes.
 - [x] Allow dynamic movement of lights, either interactive or automatic (e.g., daytime
 cycle)
 - [ ] Manage intensity of rain/snow
@@ -51,9 +51,11 @@ button ‘t’.
 * Deer is in the scene
 * You can add more models via UI
 * Height based texturing of terrain
+* It's raining(kinda)
 
 ## Things that went to shit
 * I was not able to make a new renderer because of our framework
 * I load in a plane obj instead of creating one beacuse of not being able to make a new renderer
 * I displace terrain in vertex shader making my normals weird, and could not figure out a proper way to calculate them from heightmap
 * Heapstack corruption when you load/generate terrain that you can just skip and it works fine (Not sure why it happens)
+* It's raining(kinda)
