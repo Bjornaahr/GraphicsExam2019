@@ -56,3 +56,4 @@ button ‘t’.
 * I was not able to make a new renderer because of our framework
 * I load in a plane obj instead of creating one beacuse of not being able to make a new renderer
 * I displace terrain in vertex shader making my normals weird, and could not figure out a proper way to calculate them from heightmap
+* Heapstack corruption that you can just skip and it works fine (Not sure why it happens)
