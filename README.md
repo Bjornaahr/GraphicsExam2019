@@ -1,5 +1,7 @@
 # GraphicsExam
 
+### Task done within 72 hours
+
 ## Task 1:
 - [x] Generate a terrain for the purpose of rendering. You are free to use any algorithm of choice
 (e.g., Perlin Noise Generator or Fractional Brownian Motion).
